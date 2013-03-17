@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,10 +31,8 @@ namespace ConsoleApplication1
 
         static void MainLoop()
         {      // Console.WriteLine("MENU SELECTION:");
-                //int menuSelection = Console.Read();
-          
-                Game newGame = new Game();
-            
+                //int menuSelection = Console.Read();          
+                Game newGame = new Game();            
         }
 
 

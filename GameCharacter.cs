@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +14,14 @@ namespace ConsoleApplication1
         public int spirit       { get; set; }
         public int agility      { get; set; }
         public int currentHealth { get; set; }
+        public int level        { get; set; }
+        public int exp          { get; set; }
+        public int magic        { get; set; }
+        public int maxHealth    { get; set; }
         
 
 
-        public GameCharacter(string n, int str, int sta, int it, int spir, int agi)
+        public GameCharacter(string n, int str, int sta, int it, int spir, int agi, int xp, int lvl)
         {
             name = n;
             strength = str;
@@ -25,7 +29,11 @@ namespace ConsoleApplication1
             intellect = it;
             spirit = spir;
             agility = agi;
-            currentHealth = stamina * 10;
+            currentHealth = Convert.ToInt32(stamina * 2.5);
+            maxHealth = Convert.ToInt32(stamina * 2.5);
+            level = lvl;
+            exp = xp;
+            magic = Convert.ToInt32(intellect * 2.5);
 
         }
         public GameCharacter()
@@ -36,7 +44,11 @@ namespace ConsoleApplication1
             spirit = 10;
             stamina = 10; 
             agility = 10;
-            currentHealth = stamina * 10;
+            currentHealth = Convert.ToInt32(stamina * 2.5);
+            level = 1;
+            exp = 0;
+            magic = Convert.ToInt32(intellect * 2.5);
+            maxHealth = Convert.ToInt32(stamina * 2.5);
         }
 
     }
