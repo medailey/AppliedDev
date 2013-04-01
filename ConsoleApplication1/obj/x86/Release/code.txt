@@ -1,0 +1,42 @@
+private string ReadALineOfConsoleOutput()
+{
+    IntPtr stdout = GetStdHandle((uint)-11);
+
+    if ( stdout.ToInt32() == INVALID_HANDLE_VALUE )
+    throw new Win32Exception();
+
+
+[DllImport("Kernel32", SetLastError=true)]
+static extern IntPtr GetStdHandle(uint nStdHandle);
+
+    // this assumes the console screen buffer is 80 columns wide. 
+    // You can call GetConsoleScreenBufferInfo() to get its actual dimensions.
+    uint nLength = 80;    
+    StringBuilder lpCharacter = new StringBuilder((int)nLength);
+[DllImport("Kernel32", SetLastError=true)]
+static extern bool ReadConsoleOutputCharacter(IntPtr hConsoleOutput,
+    [Out] StringBuilder lpCharacter, uint nLength, COORD dwReadCoord,
+    out uint lpNumberOfCharsRead);
+
+    // read from the first character of the first line (0, 0).
+    COORD dwReadCoord;
+    dwReadCoord.X = 0;
+    dwReadCoord.Y = 0;
+
+    uint lpNumberOfCharsRead = 0;
+
+    if ( !ReadConsoleOutputCharacter(stdout, lpCharacter, nLength, dwReadCoord, out lpNumberOfCharsRead) )
+    throw new Win32Exception();
+
+    return lpCharacter.ToString();
+[StructLayout(LayoutKind.Sequential)]
+struct COORD
+{
+    public short X;
+    public short Y;
+}
+
+
+           }
+
+}
