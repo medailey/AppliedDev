@@ -9,18 +9,37 @@ namespace ConsoleApplication1
     {
         public static COORD User { get; set; }
         static Map map1 = new Map();
-        public static char[,] theMap = Map.ReadMap();
+        public static char[,] theMap;
         static bool quit = false;
-        public static GameCharacter mainCharacter = new  GameCharacter("Michael",10,10,10,10,10,0,1);       
+        public static GameCharacter mainCharacter;       
         public static Queue<string> themessages = new Queue<string>();
         public static Queue<string> combatMessages = new Queue<string>();
         public static bool enemyNear;
         public static COORD enemyPosit { get; set; }
         public static NPChar currentEnemy;
+        public static string currentMap;
+        public static string prevMap;
+        public static double magicRegen=0;
+        
+        public static bool enemyBoss = false;
+        public static bool doorFound = false;
 
         public Game()        
         {           
-                test();         
+            mainCharacter = new  GameCharacter("Michael",10,10,10,10,10,0,1,1,10,10);
+                         
+        }
+        public Game(GameCharacter user, Map mp, COORD posit)         //constructor that takes a gamecharacter, position and a map 
+        {
+            mainCharacter = user;
+        }
+        public Game(GameCharacter user)                 //constructor that takes a user
+        {
+            mainCharacter = user;
+            theMap = Map.ReadMap("map_1.txt");
+            currentMap = "1";
+            prevMap = "0";
+            test();
         }
 
         public struct COORD
@@ -74,9 +93,15 @@ namespace ConsoleApplication1
                             {
                                 if(enemyNear ==true)
                                 {
-                                    
-                                    battle(mainCharacter, currentEnemy);
-
+                                    if (enemyBoss == true)
+                                    {
+                                        NPChar boss = new NPChar("Harlie", 10, 10);
+                                        battle(mainCharacter, boss);
+                                    }
+                                    else
+                                    {
+                                        battle(mainCharacter, currentEnemy);
+                                    }
                                 }
                                 break;
                             }
@@ -86,6 +111,14 @@ namespace ConsoleApplication1
                                 break;
                             }
 
+                        case ConsoleKey.E:
+                            {
+                                if (doorFound == true)
+                                {
+                                    newArea(User);
+                                }
+                                   break;
+                            }
                     }
                     characterMenu();
                 }
@@ -94,7 +127,7 @@ namespace ConsoleApplication1
        
         static void moveCharacter(int x, int y)
         {
-            //characterMenu();
+           
             COORD newPos = new COORD()
               {
                   X = User.X + x,
@@ -109,6 +142,27 @@ namespace ConsoleApplication1
                clearCharacter(newPos);
                 Console.SetCursorPosition(newPos.X, newPos.Y);
                 Console.WriteLine("@");
+                magicRegen += mainCharacter.spirit * .2;
+
+                if (magicRegen > 10)
+                {
+                   
+                    if (mainCharacter.magic + 5 >= mainCharacter.maxMagic)
+                    { 
+                        combatDialogue("You regen " + (mainCharacter.maxMagic - mainCharacter.magic) + " magic");
+                        mainCharacter.magic = mainCharacter.maxMagic;
+                    }
+                    else if (mainCharacter.magic == mainCharacter.maxMagic)
+                    {
+
+                    }
+                    else
+                    {
+                        mainCharacter.magic += 5;
+                        combatDialogue("You regen 5 magic");
+                    }
+                    magicRegen = 0;
+                }
                 User = newPos;                
                 //characterMenu();
             }
@@ -148,7 +202,7 @@ namespace ConsoleApplication1
                 {
                     case '.':
                         {
-                            writeMessages("You move through the dungeon");
+                            writeMessages("You move through the area");
                             return true;
                         }
                     case '|':
@@ -175,6 +229,22 @@ namespace ConsoleApplication1
                     case '$':
                         {
                             writeMessages("You stand over your enemies body.");
+
+                            return false;
+                        }
+                    case '/':
+                        {
+                            writeMessages("Continue to next area?");
+                            doorFound = true;
+                            return false;
+                        }
+                    case '%':
+                        {
+                            writeMessages("YOU HAVE ENCOUNTERED HARLIE THE ANGRY DOG!!");
+                            enemyPosit = posit;
+                            getNPC();
+                            enemyNear = true;
+                            enemyBoss = true;
                             return false;
                         }
 
@@ -199,7 +269,7 @@ namespace ConsoleApplication1
         static void characterMenu()
         {
             Console.SetCursorPosition(0, 0);            
-            Console.Write("Name: Nameless Hero\tLevel: " + mainCharacter.level + " Warrior" +  "\nHP: " +mainCharacter.currentHealth + "/" + mainCharacter.maxHealth + "\tMagic: " + mainCharacter.magic +  
+            Console.Write("Name: "+ mainCharacter.name + " \tLevel: " + mainCharacter.level + mainCharacter.className +  "\nHP: " +mainCharacter.currentHealth + "/" + mainCharacter.maxHealth + "\tMagic: " + mainCharacter.magic + "/" + mainCharacter.maxMagic +  
                 "\tXP: "+mainCharacter.exp +"\nSTR: " +mainCharacter.strength + "\tSTA: " + mainCharacter.stamina + "\tSPI: " + mainCharacter.spirit + "\nINT: " + mainCharacter.intellect + "\tAGI: " + mainCharacter.agility);
 
             Console.SetCursorPosition(0, 68);
@@ -218,6 +288,8 @@ namespace ConsoleApplication1
             //string name = Console.ReadLine();
             //GameCharacter character1 = new GameCharacter(name, 10, 10, 10, 10, 10,0,1);
             //mainCharacter = character1;
+            Console.Clear();
+            Console.Out.Flush();
             GameLoop();
         }
 
@@ -225,57 +297,105 @@ namespace ConsoleApplication1
         {
             bool battleFinished = false;
 
-            
-            int top = 0; 
+
+            int top = 0;
             int left = 50;
-            drawEnemy enemy = new drawEnemy("..\\art\\unicorn.txt");
-            char[,] pic =new char[8,35];
+            drawEnemy enemy;
+            if (enemyBoss == true)
+            {
+                enemy = new drawEnemy("..\\art\\dog.txt");
+            }
+            else
+            {
+                enemy = new drawEnemy("..\\art\\unicorn.txt");
+            }
+                char[,] pic = new char[10, 35];
             pic = enemy.enemy;
             Console.SetCursorPosition(left, top);
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 10; i++)
             {
-                for(int k = 0; k < 35; k++)
+                for (int k = 0; k < 35; k++)
                 {
-                    Console.Write(pic[i,k]);
+                    Console.Write(pic[i, k]);
 
                 }
                 top++;
                 Console.SetCursorPosition(left, top);
 
             }
+            combatDialogue("Begin Battle!");
 
-            Console.SetCursorPosition(80, 0);
-            Console.WriteLine("Enemy: " + mob.name + " Health: " + mob.currentHealth + " ");
-            if (battleFinished == false && mob.currentHealth>0)
+
+            while (battleFinished == false && mob.currentHealth > 0)
             {
-                Random rand = new Random();
-                int currentHealth = mainCharacter.currentHealth;
-                int damage;
+                ConsoleKeyInfo keyInfo;               
+                keyInfo = Console.ReadKey();
+                Console.SetCursorPosition(80, 0);
+                Console.WriteLine("Enemy: " + mob.name + " Health: " + mob.currentHealth + " ");
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.A:
+                            {
+                                if (enemyNear == true)
+                                {
+                                    Random rand = new Random();
+                                    int currentHealth = mainCharacter.currentHealth;
+                                    int damage;
+                                    
+                                    damage = rand.Next(mob.strength);
+                                    combatDialogue(mob.name + " does " + damage + " damage to YOU!");
+                                    currentHealth = currentHealth - damage;
+                                    damage = rand.Next(2,mainCharacter.strength);
+                                    mob.currentHealth = mob.currentHealth - damage;
+                                    combatDialogue(mainCharacter.name + " does " + damage + " damage to " + mob.name + " using a " + mainCharacter.attack1);
+                                    mainCharacter.currentHealth = currentHealth;
+                                }
+                                break;
+                            }
+                        case ConsoleKey.R:
+                            {
+                                Random rand = new Random();
+                                healingSpell();
+                                int currentHealth = mainCharacter.currentHealth;
+                                int damage;
+                                
+                                damage = rand.Next(mob.strength);
+                                combatDialogue(mob.name + " does " + damage + " damage to YOU!");
+                                currentHealth = currentHealth - damage;
+                                break;
+                            }
+                        default:
+                            break;
 
-                Console.SetCursorPosition(0, 5);
-                combatDialogue("Begin Battle!");
-                damage = rand.Next(mob.strength);
-                combatDialogue(mob.name + " does " + damage + " damage to YOU!");
-                currentHealth = currentHealth - damage;
-                damage = rand.Next(mainCharacter.strength);
-                mob.currentHealth = mob.currentHealth - damage;
-                combatDialogue(mainCharacter.name + " does " + damage + " damage to " + mob.name);
-                mainCharacter.currentHealth = currentHealth;
-                if (mob.currentHealth <= 0)
-                {
-                    combatDialogue(mob.name + " IS DEAD!");
-                    
-                    theMap[enemyPosit.Y - 25, enemyPosit.X] = '$';
-                    Console.SetCursorPosition(enemyPosit.X, enemyPosit.Y);
-                    Console.Write('$');
-                    clearEnemy();
-                    battleFinished = true;
-                    
+                    }
+                    characterMenu();
+
+                    Console.SetCursorPosition(80, 0);
+                    Console.WriteLine("Enemy: " + mob.name + " Health: " + mob.currentHealth + " ");
+
+
+                    if (mob.currentHealth <= 0)
+                    {
+                        combatDialogue(mob.name + " IS DEAD!");
+
+                        theMap[enemyPosit.Y - 25, enemyPosit.X] = '$';
+                        Console.SetCursorPosition(enemyPosit.X, enemyPosit.Y);
+                        Console.Write('$');
+                        clearEnemy();
+                        if (enemyBoss == true)
+                        {
+                            combatDialogue("You gain 25 experience.");
+                            mainCharacter.exp += 25;
+                            enemyBoss = false;
+                        }
+                        combatDialogue("You gain 10 experience.");
+                        mainCharacter.exp += 10;
+                        battleFinished = true;
+                        enemyNear = false;
+                    }
                 }
-            }
-           
-            
 
+                
             return true;
         }
 
@@ -352,7 +472,7 @@ namespace ConsoleApplication1
        public static void healingSpell()
        {
            Random rand = new Random();
-           int healingCost = Convert.ToInt32(mainCharacter.level * 2);
+           int healingCost = Convert.ToInt32(mainCharacter.level * 1.8);
            if (mainCharacter.magic > healingCost)
            {
                int healing = rand.Next(1, mainCharacter.intellect);
@@ -375,6 +495,30 @@ namespace ConsoleApplication1
            currentEnemy = new NPChar("Unicorn", 6, 6);
            
        }
+
+        public static void newArea(COORD position)
+        {
+            User = new COORD(1, 26);
+            if (currentMap == "1")
+            {
+                theMap = Map.ReadMap("map_2.txt");
+                prevMap = "1";
+                currentMap = "2";
+            }
+            else if(currentMap == "2")
+            {
+                theMap = Map.ReadMap("map_1.txt");
+                prevMap = "2";
+                currentMap = "3";
+            }
+            else if (currentMap == "3")
+            {
+                theMap = Map.ReadMap("map_1.txt");
+                currentMap = "1";
+            }
+            doorFound = false;
+            Console.Clear();
+        }
 
     }
 }

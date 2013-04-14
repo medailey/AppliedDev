@@ -12,7 +12,7 @@ namespace ConsoleApplication1
 
         public drawEnemy(String str)
         {
-             enemy = new char[8,35];
+             enemy = new char[10,35];
             using (StreamReader sr = new StreamReader(str))
             {
                 for (int i = 0; i < 8; i++)
