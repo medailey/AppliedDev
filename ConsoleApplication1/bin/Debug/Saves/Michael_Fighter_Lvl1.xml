@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<GameCharacter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Michael</name>
+  <strength>10</strength>
+  <stamina>8</stamina>
+  <intellect>6</intellect>
+  <spirit>5</spirit>
+  <agility>6</agility>
+  <currentHealth>20</currentHealth>
+  <level>1</level>
+  <exp>10</exp>
+  <magic>15</magic>
+  <maxHealth>20</maxHealth>
+  <maxMagic>15</maxMagic>
+  <charCl>1</charCl>
+  <className>Fighter</className>
+  <attack1>punch</attack1>
+  <xPos>6</xPos>
+  <yPos>28</yPos>
+</GameCharacter>

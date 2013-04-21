@@ -46,7 +46,6 @@
     <Compile Include="drawEnemy.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="ConsoleReader.cs" />
-    <Compile Include="CreateCharacter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Map.cs" />

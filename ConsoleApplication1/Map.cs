@@ -6,8 +6,18 @@ using System.IO;
 
 namespace ConsoleApplication1
 {
-    class Map                                                                           //class map reads from files to a char array 
+    public class Map                                                                           //class map reads from files to a char array 
     {
+        public Map()
+        {
+        }
+
+        public Map(string theMap)
+        {
+            ReadMap(theMap);
+        }
+
+        public char[,] map {set; get;}
         public static char[,] ReadMap(string themap)
         {
 
@@ -25,12 +35,12 @@ namespace ConsoleApplication1
                         {
                             if (j < line.Length)
                                 map[i, j] = (char)(line[j]);
-                        }
-                    }
+                        }//end inner loop
+                    }//end outer loop
 
-                }
+                }//end using
                 return map;                                                         //return the array
-            }
+            }//end try
             catch (FileNotFoundException ex)
             {
                 Console.WriteLine("CANNOT FIND FILE");

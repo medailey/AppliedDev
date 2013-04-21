@@ -6,13 +6,16 @@ using System.IO;
 
 namespace ConsoleApplication1
 {
+    /// <summary>
+    /// class used to load an enemy portrait from file
+    /// </summary>
     class drawEnemy
     {
-       public char[,] enemy { set; get; }
+       public char[,] enemy { set; get; }  //variable used to hold the enemy
 
-        public drawEnemy(String str)
+        public drawEnemy(String str)                //function used to load file and read file
         {
-             enemy = new char[10,35];
+            enemy = new char[10,35];
             using (StreamReader sr = new StreamReader(str))
             {
                 for (int i = 0; i < 8; i++)
@@ -23,13 +26,13 @@ namespace ConsoleApplication1
                     {
                         if (j < line.Length)
                             enemy[i, j] = (char)(line[j]);
-                    }
-                }
+                    }//end inner loop
+                }//end outer loop
 
-            }
+            }//end using
 
-        }
+        }//end function drawEnemy
 
 
-    }
-}
+    }//end class drawenemy
+}//end namespace

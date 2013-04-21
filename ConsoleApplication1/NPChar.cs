@@ -5,8 +5,13 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
+    /// <summary>
+    /// NPChar class used to create enemy characters
+    /// two constructors one default constructor and another that takes 3 parameters
+    /// </summary>
     class NPChar
     {
+
         public string name { get; set; }
         public int currentHealth { get; set; }
         public int strength { get; set; }
@@ -19,15 +24,15 @@ namespace ConsoleApplication1
             strength = str;
             stamina = sta;
             currentHealth = Convert.ToInt32(stamina * 2.5);
-        }
+        }//end NPChar
+
         public NPChar()
         {
             name = null;
             strength = 8;
             stamina = 8;
             currentHealth = Convert.ToInt32(stamina * 2.5);
-        }
-    }
+        }//end NPChar
+    }//end Class NPChar
 
-
-}
+}//End Namespace

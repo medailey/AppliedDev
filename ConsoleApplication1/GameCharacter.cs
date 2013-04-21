@@ -6,8 +6,9 @@ using System.Text;
 namespace ConsoleApplication1
 {
     //class to represent the users game character 
-    class GameCharacter
+     public class GameCharacter
     {
+         //different variables representing a game character
         public string name      { get; set; }
         public int strength     { get; set; }
         public int stamina      { get; set; }
@@ -23,8 +24,11 @@ namespace ConsoleApplication1
         public int charCl       { get; set; }
         public string className { get; set; }
         public string attack1 { get; set; }
+        public int xPos { get; set; }
+        public int yPos { get; set; }
+        public string currentMap { get; set; }
 
-
+       
         public GameCharacter(string n, int str, int sta, int it, int spir, int agi, int xp, int lvl, int cl, int curMag, int curHea)  //constructor that takes all variables, used for saved games
         {
             name = n;
@@ -51,7 +55,7 @@ namespace ConsoleApplication1
             {
                 strength = 10;
                 intellect = 6;
-                stamina = 8;
+                stamina = 12;
                 spirit = 5;
                 agility = 6;
                 className = "Fighter";
@@ -66,7 +70,7 @@ namespace ConsoleApplication1
                 spirit = 5;
                 agility = 10;
                 className = "Stalker";
-                attack1 = "stab";
+                attack1 = "slash";
             }
             if (cl == 3)    //3 is the sorcerer class
             {
