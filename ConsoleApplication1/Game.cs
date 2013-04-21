@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     /// <summary>
     /// Main Game Class 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     public class Map                                                                           //class map reads from files to a char array 
     {

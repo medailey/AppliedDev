@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     class Program                                                                               //main program used to run the game
     {

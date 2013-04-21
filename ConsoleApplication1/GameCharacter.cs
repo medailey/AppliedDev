@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     //class to represent the users game character 
      public class GameCharacter

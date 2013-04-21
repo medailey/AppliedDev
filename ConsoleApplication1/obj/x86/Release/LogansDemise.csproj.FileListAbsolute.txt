@@ -8,7 +8,7 @@ C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\Co
 C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\ConsoleApplication1\bin\Release\maps\map_2.txt
 C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\ConsoleApplication1\bin\Release\maps\map_3.txt
 C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.exe
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.pdb
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Release\LogansDemise.exe
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Release\LogansDemise.pdb
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Release\LogansDemise.exe
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Release\LogansDemise.pdb

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     /// <summary>
     /// class used to load an enemy portrait from file

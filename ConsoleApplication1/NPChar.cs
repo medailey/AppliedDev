@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConsoleApplication1
+namespace LogansDemise
 {
     /// <summary>
     /// NPChar class used to create enemy characters
