@@ -21,6 +21,12 @@ namespace LogansDemise
             System.Console.SetWindowSize(130, 70);
  
             titleScreen();
+            Console.SetCursorPosition(25, 35);
+            Console.WriteLine("Press Any Key to Continue");
+            while (!Console.KeyAvailable)
+            {
+
+            }
                                                                                                      //bool variable to keep game running
             while(endGame != true)                                                                   //while loop to keep the mainloop running
             {
@@ -28,8 +34,8 @@ namespace LogansDemise
 
                 Console.CursorVisible = false;                                                     //turn off the cursor in the console
 
-                System.Console.SetWindowPosition(0, 0); 
-
+                System.Console.SetWindowPosition(0, 0);
+                
                 Console.Clear();
                 MainLoop();                                                                     //start main loop
                 Console.Clear();
@@ -45,10 +51,11 @@ namespace LogansDemise
         static void MainLoop()
         {
            
-            Console.SetCursorPosition(25, 14);
+            Console.SetCursorPosition(25, 20);
             Console.WriteLine("MENU SELECTION:");
+                       titleScreen();
             MainMenu();
-
+ 
             int menuSelection = Console.Read();
 
                 switch (menuSelection)
@@ -93,7 +100,8 @@ namespace LogansDemise
         public static void loadMenu()
         {
             
-            Console.Clear();            
+            Console.Clear();
+            titleScreen();
             while (fileLoaded != true)
             {
                 List<string> fileNames = new List<string>();
@@ -101,7 +109,7 @@ namespace LogansDemise
                 DirectoryInfo dir = new DirectoryInfo(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Saves\\"); //get the directory where the exe was ran from
                 if (Directory.Exists(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Saves\\"))                    //look for the saves directory
                 {
-                    Console.SetCursorPosition(25, 14);
+                    Console.SetCursorPosition(25, 20);
                     Console.Write("Please Select Save To Load: ");
                     var files = dir.GetFiles(); //get the files from the directory
                     if (files.Length > 0)   //test if there are files
@@ -110,11 +118,11 @@ namespace LogansDemise
                         for (int i = 0; i < files.Length; i++)
                         {
                             FileInfo f = files[i];
-                            Console.SetCursorPosition(25, 15);
+                            Console.SetCursorPosition(25, 21);
                             Console.Write((i + 1) + ": " + f.Name);
                             fileNames.Add(f.FullName);
                         } //end for
-                        Console.SetCursorPosition(52, 14);
+                        Console.SetCursorPosition(52, 20);
 
                         Console.ReadLine();
                         string fileNum = Console.ReadLine();
@@ -125,7 +133,7 @@ namespace LogansDemise
 
                             if (fileNums > (files.Length)) //test if user entered a valid save game
                             {
-                                Console.SetCursorPosition(25, 13);
+                                Console.SetCursorPosition(25, 19);
                                 Console.Write("Invalid Selection. Try Again.");
                             } //end if
                             else if (fileNums >= 0) //if user did select a valid number load the file and deserialize it
@@ -143,7 +151,7 @@ namespace LogansDemise
                         }
                         else
                         {
-                            Console.SetCursorPosition(25, 13);
+                            Console.SetCursorPosition(25, 19);
                             Console.Write("Invalid Selection. Try Again.");
 
                         }
@@ -154,7 +162,7 @@ namespace LogansDemise
                 else
                 {
                     Console.Clear();
-                    Console.SetCursorPosition(25, 13);
+                    Console.SetCursorPosition(25, 19);
                     Console.Write("No Saves Available. Press Any Key to Return to Main Menu");
                     while (!Console.KeyAvailable)
                     {
@@ -176,17 +184,17 @@ namespace LogansDemise
 
         static void MainMenu()
         {
-            Console.SetCursorPosition(25, 15);
+            Console.SetCursorPosition(25, 21);
             Console.Write("Please Select An Option:");
-            Console.SetCursorPosition(25, 16);
+            Console.SetCursorPosition(25, 22);
             Console.Write("(1) Start New Game");
-            Console.SetCursorPosition(25, 17);
+            Console.SetCursorPosition(25, 23);
             Console.Write("(2) Load Saved Game");
-            Console.SetCursorPosition(25, 18);
+            Console.SetCursorPosition(25, 24);
             Console.Write("(3) Help Menu");
-            Console.SetCursorPosition(25, 19);
+            Console.SetCursorPosition(25, 25);
             Console.Write("(4) Exit");
-            Console.SetCursorPosition(50, 15);                
+            Console.SetCursorPosition(50, 20);                
         } //end MainMenu function
 
         /// <summary>
@@ -196,34 +204,35 @@ namespace LogansDemise
         {
             
             Console.Clear();
-            
+            titleScreen();
             while (characterFin != true)
             {
                 //get character name
-                Console.SetCursorPosition(25, 14);
+                Console.SetCursorPosition(25, 20);
                 Console.WriteLine("Character Creation:");
-                Console.SetCursorPosition(25, 15);
+                Console.SetCursorPosition(25, 21);
                 Console.WriteLine("Please  Enter Your Character Name:");
-                Console.SetCursorPosition(25, 16);
+                Console.SetCursorPosition(25, 22);
                 Console.ReadLine();
                 string charName = Console.ReadLine();
                 
                 Console.Clear();
+                titleScreen();
                 bool selectClass = false;
                 while (selectClass != true)
                 {
                     //select a class
-                    Console.SetCursorPosition(25, 14);
+                    Console.SetCursorPosition(25, 20);
                     Console.Write("Hello " + charName);
-                    Console.SetCursorPosition(25, 15);
+                    Console.SetCursorPosition(25, 21);
                     Console.Write("Please Select A Class:        ");
-                    Console.SetCursorPosition(25, 16);
+                    Console.SetCursorPosition(25, 22);
                     Console.Write("(1) Fighter : Uses fists as weapons to defeat enemies and has extra endurance");
-                    Console.SetCursorPosition(25, 17);
+                    Console.SetCursorPosition(25, 23);
                     Console.Write("(2) Stalker : Has Ability to escape mid fight and surprise enemies");
-                    Console.SetCursorPosition(25, 18);
+                    Console.SetCursorPosition(25, 24);
                     Console.Write("(3) Sorcerer : Fights enemys with fire and can heal during battle");
-                    Console.SetCursorPosition(50, 15);
+                    Console.SetCursorPosition(50, 21);
 
 
                     int classSel = Console.Read();
@@ -262,7 +271,7 @@ namespace LogansDemise
                         default:
                             {
                                 //incorrect selection
-                                Console.SetCursorPosition(25, 20);
+                                Console.SetCursorPosition(25, 19);
                                 Console.Write("You have entered an incorrect value try again");
                                 break;
                             }
@@ -441,12 +450,6 @@ namespace LogansDemise
                    Console.SetCursorPosition(left, top);
                }
 
-               Console.SetCursorPosition(25, 35);
-               Console.WriteLine("Press Any Key to Continue");
-               while (!Console.KeyAvailable)
-               {
-
-               }
            }
 
     } //end class

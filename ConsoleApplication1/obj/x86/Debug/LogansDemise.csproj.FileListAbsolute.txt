@@ -3,8 +3,8 @@ C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\Co
 C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
 C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 C:\Users\Mike\Documents\Visual Studio 2010\Projects\C#Dos\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Debug\LogansDemise.exe
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\bin\Debug\LogansDemise.pdb
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Debug\LogansDemise.exe
+C:\Users\Mike\Documents\GitHub\AppliedDev\ConsoleApplication1\obj\x86\Debug\LogansDemise.pdb

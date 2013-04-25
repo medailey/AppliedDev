@@ -267,6 +267,30 @@ namespace LogansDemise
 
             Console.SetCursorPosition(User.X, User.Y);
             Console.WriteLine(theMap[User.Y-25,User.X]);
+
+            if (newPos.X - 2 > 0)
+            {
+                Console.SetCursorPosition(newPos.X - 2, newPos.Y);
+                Console.WriteLine(theMap[newPos.Y - 25, newPos.X - 2]);
+            }
+            if(newPos.Y -2 >27)
+            {
+                Console.SetCursorPosition(newPos.X, newPos.Y - 2);
+                Console.WriteLine(theMap[newPos.Y - 27, newPos.X]);
+            }
+
+            if(newPos.Y + 2 <40)
+            {
+                Console.SetCursorPosition(newPos.X, newPos.Y + 2);
+                Console.WriteLine(theMap[newPos.Y - 23, newPos.X]);
+            }
+            if (newPos.X + 2 < 25)
+            {
+                Console.SetCursorPosition(newPos.X + 2, newPos.Y);
+                Console.WriteLine(theMap[newPos.Y - 25, newPos.X + 2]);
+            }
+
+
         }//end clear character
 
         //function used to determine if the user can move based on character defined on the map
@@ -674,15 +698,20 @@ namespace LogansDemise
                 theMap = Map.ReadMap("map_2.txt");
                 prevMap = "map_1.txt";
                 currentMap = "map_2.txt";
+                moveCharacter(0, 0);
+                doorFound = false;
             }//end if
             else if(currentMap == "map_2.txt")
             {
                 theMap = Map.ReadMap("map_1.txt");
                 prevMap = "map_2.txt";
                 currentMap = "map_1.txt";
+                moveCharacter(0, 0);
+                doorFound = false;
             }//end else if
             doorFound = false;
             Console.Clear();
+            moveCharacter(0, 0);
         }//end function new area
         
     }//end class Game
